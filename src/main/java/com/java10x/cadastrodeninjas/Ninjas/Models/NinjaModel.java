@@ -2,15 +2,11 @@ package com.java10x.cadastrodeninjas.Ninjas.Models;
 
 import com.java10x.cadastrodeninjas.Missions.Models.MissionModel;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.List;
-
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -22,7 +18,10 @@ public class NinjaModel {
     private Long id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
+
     private Integer age;
 
     @ManyToOne()
