@@ -7,8 +7,6 @@ spring:
 
   datasource:
     url: ${DATABASE_URL}
-    DB_CLOSE_DELAY: -1
-    DB_CLOSE_ON_EXIT: FALSE
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
     driver: org.h2.Driver
