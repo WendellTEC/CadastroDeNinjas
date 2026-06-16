@@ -1,6 +1,6 @@
-package com.java10x.cadastrodeninjas.Missions.Models;
+package com.java10x.cadastrodeninjas.Mission.Model;
 
-import com.java10x.cadastrodeninjas.Ninjas.Models.NinjaModel;
+import com.java10x.cadastrodeninjas.Ninja.Model.NinjaModel;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -17,10 +17,13 @@ public class MissionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "difficulty")
     private String difficulty;
 
     @OneToMany(mappedBy = "missions")

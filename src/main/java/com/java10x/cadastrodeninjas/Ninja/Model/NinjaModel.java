@@ -1,6 +1,6 @@
-package com.java10x.cadastrodeninjas.Ninjas.Models;
+package com.java10x.cadastrodeninjas.Ninja.Model;
 
-import com.java10x.cadastrodeninjas.Missions.Models.MissionModel;
+import com.java10x.cadastrodeninjas.Mission.Model.MissionModel;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -15,13 +15,19 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "age")
     private Integer age;
 
     @ManyToOne()
