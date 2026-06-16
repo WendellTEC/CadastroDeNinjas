@@ -13,7 +13,7 @@ public class MissionController {
     }
 
     // Get Missions (READ)
-    @GetMapping("/all")
+    @GetMapping("/list")
     public String getMissions() {
         return "Get all missions";
     }
@@ -25,7 +25,7 @@ public class MissionController {
     }
 
     // Delete Missions (DELETE)
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deleteID")
     public String deleteMissionById() {
         return "Mission Deleted";
     }
