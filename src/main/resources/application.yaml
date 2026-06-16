@@ -16,3 +16,9 @@ spring:
     hibernate.ddl-auto: update
     show-sql: true
 
+  # flyway configuration
+  flyway:
+    enable: true
+    locations: classpath:db/migrations
+    baseline-on-migrate: true
+
