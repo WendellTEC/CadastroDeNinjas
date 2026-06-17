@@ -33,6 +33,14 @@ public class NinjaService {
     }
 
     // Modify ninja
+    public NinjaModel modifyNinjaById(Long id, NinjaModel ninjaUpdated) {
+        if (ninjaRepository.existsById(id)) {
+            ninjaUpdated.setId(id);
+            return ninjaRepository.save(ninjaUpdated);
+        } else {
+            return null;
+        }
+    }
 
     // Delete ninja by id
     public void deleteNinjaById(Long id) {
