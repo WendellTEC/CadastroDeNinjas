@@ -32,4 +32,11 @@ public class NinjaService {
         return ninjaById.orElse(null);
     }
 
+    // Modify ninja
+
+    // Delete ninja by id
+    public void deleteNinjaById(Long id) {
+        ninjaRepository.deleteById(id);
+    }
+
 }
