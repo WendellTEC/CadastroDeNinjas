@@ -4,10 +4,8 @@ import com.java10x.cadastrodeninjas.Ninja.Model.NinjaModel;
 import com.java10x.cadastrodeninjas.Ninja.Repository.NinjaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 @Service
 public class NinjaService {
@@ -18,7 +16,10 @@ public class NinjaService {
         this.ninjaRepository = ninjaRepository;
     }
 
-    Scanner sc = new Scanner(System.in);
+    // Add ninja
+    public NinjaModel addNinja(NinjaModel ninja) {
+        return ninjaRepository.save(ninja);
+    }
 
     // Get ninjas
     public List<NinjaModel> getNinjas() {
