@@ -1,6 +1,6 @@
 package com.java10x.cadastrodeninjas.Ninja.Controller;
 
-import com.java10x.cadastrodeninjas.Ninja.Model.NinjaModel;
+import com.java10x.cadastrodeninjas.Ninja.DTO.NinjaDTO;
 import com.java10x.cadastrodeninjas.Ninja.Service.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,25 +23,25 @@ public class NinjaController {
 
     // Add ninja (CREATE)
     @PostMapping("/add")
-    public NinjaModel addNinja(@RequestBody NinjaModel ninja) {
+    public NinjaDTO addNinja(@RequestBody NinjaDTO ninja) {
         return ninjaService.addNinja(ninja);
     }
 
     // Get ninjas (READ)
     @GetMapping("/list")
-    public List<NinjaModel> getNinjas() {
+    public List<NinjaDTO> getNinjas() {
         return ninjaService.getNinjas();
     }
 
     // Get ninja by id  (READ)
     @GetMapping("/list/{id}")
-    public NinjaModel getNinjaById(@PathVariable Long id) {
+    public NinjaDTO getNinjaById(@PathVariable Long id) {
         return ninjaService.getNinjaById(id);
     }
 
     // Modify ninja data (UPDATE)
     @PutMapping("/modify/{id}")
-    public NinjaModel modifyNinjaById(@PathVariable Long id, @RequestBody NinjaModel ninjaUpdated) {
+    public NinjaDTO modifyNinjaById(@PathVariable Long id, @RequestBody NinjaDTO ninjaUpdated) {
         return ninjaService.modifyNinjaById(id, ninjaUpdated);
     }
 
