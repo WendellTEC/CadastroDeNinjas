@@ -24,15 +24,16 @@ public class NinjaModel {
     @Column(unique = true, name = "email")
     private String email;
 
+    @Column(name = "age")
+    private Integer age;
+
     @Column(name = "img_url")
     private String imgUrl;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "rank")
+    private String rank;
 
     @ManyToOne()
     @JoinColumn(name = "missions_id")
     private MissionModel missions;
-
-
 }
