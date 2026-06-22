@@ -22,3 +22,7 @@ spring:
     locations: classpath:db/migrations
     baseline-on-migrate: true
 
+  # mvc configuration
+  mvc:
+    hiddenmethod:
+      filter.enabled: true

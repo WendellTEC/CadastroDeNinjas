@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Ninja</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI', sans-serif;
+            background:#f4f7fc;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            width:100%;
+            max-width:650px;
+            background:white;
+            padding:35px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            color:#1f2937;
+            margin-bottom:25px;
+        }
+
+        .profile{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .profile img{
+            width:150px;
+            height:150px;
+            border-radius:50%;
+            object-fit:cover;
+            border:5px solid #2563eb;
+            margin-bottom:15px;
+        }
+
+        .profile h2{
+            color:#374151;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        label{
+            font-weight:600;
+            color:#374151;
+        }
+
+        input{
+            padding:12px 15px;
+            border:2px solid #e5e7eb;
+            border-radius:10px;
+            font-size:1rem;
+            transition:.3s;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:#2563eb;
+            box-shadow:0 0 10px rgba(37,99,235,.2);
+        }
+
+        .save-btn{
+            margin-top:15px;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:linear-gradient(135deg,#f59e0b,#d97706);
+            color:white;
+            font-size:1rem;
+            font-weight:600;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        .save-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        .back-btn{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:600;
+        }
+
+        .back-btn:hover{
+            color:#1d4ed8;
+        }
+
+        .id-info{
+            text-align:center;
+            color:#6b7280;
+            margin-bottom:20px;
+            font-size:.9rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Modify Ninja</h1>
+
+
+    <div class="profile">
+
+        <img th:src="${ninja.imgUrl}"
+             th:alt="${ninja.name}">
+
+        <h2 th:text="${ninja.name}">
+            Ninja Name
+        </h2>
+
+    </div>
+
+
+    <p class="id-info">
+        Ninja ID:
+        <span th:text="${ninja.id}"></span>
+    </p>
+
+
+    <form th:action="@{/ninjas/ui/save/{id}(id=${ninja.id})}"
+          th:object="${ninja}"
+          method="post">
+
+
+        <!-- Necessário para transformar POST em PUT -->
+        <input type="hidden" name="_method" value="PUT">
+
+
+        <label for="name">
+            Name
+        </label>
+
+        <input type="text"
+               id="name"
+               th:field="*{name}"
+               required>
+
+
+        <label for="email">
+            Email
+        </label>
+
+        <input type="email"
+               id="email"
+               th:field="*{email}"
+               required>
+
+
+        <label for="imgUrl">
+            Image URL
+        </label>
+
+        <input type="text"
+               id="imgUrl"
+               th:field="*{imgUrl}"
+               required>
+
+
+        <label for="age">
+            Age
+        </label>
+
+        <input type="number"
+               id="age"
+               th:field="*{age}"
+               required>
+
+
+        <label for="rank">
+            Rank
+        </label>
+
+        <input type="text"
+               id="rank"
+               th:field="*{rank}">
+
+
+        <button type="submit" class="save-btn">
+            Save Changes
+        </button>
+
+    </form>
+
+
+    <a th:href="@{/ninjas/ui/list}" class="back-btn">
+        ← Back to Ninja List
+    </a>
+
+
+</div>
+
+</body>
+
+</html>

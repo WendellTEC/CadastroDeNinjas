@@ -28,6 +28,7 @@ public class NinjaControllerUi {
         return "addNinja";
     }
 
+    // Save ninja added
     @PostMapping("/save")
     public String saveNinja(@ModelAttribute NinjaDTO ninja, RedirectAttributes redirectAttributes) {
         ninjaService.addNinja(ninja);
@@ -57,18 +58,18 @@ public class NinjaControllerUi {
     }
 
     // Modify ninja data (UPDATE)
-    @PutMapping("/modify/{id}")
-    public ResponseEntity<?> modifyNinjaById(@PathVariable Long id, @RequestBody NinjaDTO ninjaUpdated) {
+    @GetMapping("/modify/{id}")
+    public String getFormModifyNinja(@PathVariable Long id, Model model) {
+            NinjaDTO ninja = ninjaService.getNinjaById(id);
+            model.addAttribute("ninja", ninja);
+            return "ninjaModify.html";
+    }
 
-        NinjaDTO ninjaModify = ninjaService.modifyNinjaById(id, ninjaUpdated);
-
-        if (ninjaModify != null) {
-            return ResponseEntity.ok(ninjaModify);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Ninja not found!");
-        }
-
+    @PutMapping("/save/{id}")
+    public String saveNinjaModify(@PathVariable Long id, @ModelAttribute NinjaDTO ninja, RedirectAttributes redirectAttributes) {
+        ninjaService.modifyNinjaById(id, ninja);
+        redirectAttributes.addFlashAttribute("message", "Ninja modified");
+        return "redirect:/ninjas/ui/list";
     }
 
     // Delete ninja (DELETE)
