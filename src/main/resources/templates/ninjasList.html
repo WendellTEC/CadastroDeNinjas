@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Table</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI', sans-serif;
+            background:#f4f7fc;
+            padding:40px;
+            color:#333;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#1f2937;
+            font-size:2.5rem;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            border-radius:16px;
+            overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        thead{
+            background:linear-gradient(135deg,#2563eb,#1d4ed8);
+            color:white;
+        }
+
+        thead th{
+            padding:18px;
+            text-align:left;
+        }
+
+        tbody tr{
+            border-bottom:1px solid #e5e7eb;
+            transition:0.3s;
+        }
+
+        tbody tr:hover{
+            background:#f8fafc;
+        }
+
+        tbody td{
+            padding:16px;
+            vertical-align:middle;
+        }
+
+        img{
+            width:80px;
+            height:80px;
+            border-radius:50%;
+            object-fit:cover;
+            border:3px solid #2563eb;
+        }
+
+        .actions{
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+        }
+
+        .btn-add{
+            display:inline-block;
+            margin-bottom:20px;
+            padding:12px 20px;
+            background:linear-gradient(135deg,#22c55e,#16a34a);
+            color:white;
+            text-decoration:none;
+            font-weight:600;
+            border-radius:10px;
+            box-shadow:0 4px 12px rgba(34,197,94,.3);
+            transition:all .3s ease;
+        }
+
+        .btn{
+            text-decoration:none;
+            color:white;
+            padding:10px 15px;
+            border-radius:8px;
+            font-weight:600;
+            transition:0.3s;
+            display:inline-block;
+        }
+
+        .btn:hover{
+            transform:translateY(-2px);
+            opacity:0.9;
+        }
+
+        .view{
+            background:#3b82f6;
+        }
+
+        .edit{
+            background:#f59e0b;
+        }
+
+        .delete{
+            background:#ef4444;
+        }
+
+        @media(max-width:900px){
+            table{
+                display:block;
+                overflow-x:auto;
+                white-space:nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ninjas List</h1>
+    <a class="btn-add" th:href="@{/ninjas/ui/add}">Add New Ninjas</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Rank</th>
+                <th>Missions</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each ="ninja: ${ninjas}">
+                <td> <img th:src="${ninja.imgUrl}" width="100" height="100"> </td>
+                <td th:text="${ninja.name}"></td>
+                <td th:text="${ninja.age}"></td>
+                <td th:text="${ninja.email}"></td>
+                <td th:text="${ninja.rank}"></td>
+                <td>
+                    <span th:if="${ninja.missions}">
+                        Name: <span th:text="${ninja.missions.name}"></span>,
+                        Difficulty: <span th:text="${ninja.missions.difficulty}"></span>
+                    </span>
+                    <span th:if="${ninja.missions == null}">Don't have missions in moment</span>
+                </td>
+
+                <td class="actions">
+                    <a th:href="@{/ninjas/ui/list/{id}(id=${ninja.id})}" class="btn view">
+                        View details
+                    </a>
+                    <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}" class="btn edit">
+                        Modify
+                    </a>
+                    <a th:href="@{/ninjas/ui/delete/{id}(id=${ninja.id})}"
+                        class="btn delete">
+                        Delete
+                    </a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

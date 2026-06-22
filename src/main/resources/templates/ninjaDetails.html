@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Ninja Details</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI', sans-serif;
+            background:#f4f7fc;
+            padding:40px;
+            color:#333;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#1f2937;
+        }
+
+        .container{
+            max-width:900px;
+            margin:0 auto;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .profile{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .profile img{
+            width:200px;
+            height:200px;
+            object-fit:cover;
+            border-radius:50%;
+            border:5px solid #2563eb;
+            margin-bottom:15px;
+        }
+
+        .profile h2{
+            color:#1f2937;
+            margin-bottom:15px;
+        }
+
+        .info{
+            background:#f8fafc;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:25px;
+        }
+
+        .info p{
+            margin-bottom:10px;
+            font-size:1rem;
+        }
+
+        h3{
+            margin-bottom:15px;
+            color:#1f2937;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            overflow:hidden;
+            border-radius:12px;
+        }
+
+        thead{
+            background:linear-gradient(135deg,#2563eb,#1d4ed8);
+            color:white;
+        }
+
+        th, td{
+            padding:15px;
+            text-align:left;
+        }
+
+        tbody tr{
+            border-bottom:1px solid #e5e7eb;
+            transition:.3s;
+        }
+
+        tbody tr:hover{
+            background:#f8fafc;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-top:25px;
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:12px 20px;
+            border-radius:10px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .back-btn:hover{
+            transform:translateY(-2px);
+            background:#1d4ed8;
+        }
+
+        @media(max-width:768px){
+            body{
+                padding:15px;
+            }
+
+            .container{
+                padding:20px;
+            }
+
+            table{
+                display:block;
+                overflow-x:auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ninja Details</h1>
+
+<div class="container">
+
+    <div class="profile">
+        <img th:src="${ninja.imgUrl}" th:alt="${ninja.name}">
+        <h2 th:text="${ninja.name}"></h2>
+    </div>
+
+    <div class="info">
+        <p><strong>Email:</strong> <span th:text="${ninja.email}"></span></p>
+        <p><strong>Age:</strong> <span th:text="${ninja.age}"></span></p>
+        <p><strong>Rank:</strong> <span th:text="${ninja.rank}"></span></p>
+    </div>
+
+    <h3>Missions</h3>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Difficulty</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mission : ${ninja.missions}">
+            <td th:text="${mission.name}"></td>
+            <td th:text="${mission.difficulty}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/ninjas/ui/list}" class="back-btn">
+        ← Back to Ninjas List
+    </a>
+
+</div>
+
+</body>
+</html>

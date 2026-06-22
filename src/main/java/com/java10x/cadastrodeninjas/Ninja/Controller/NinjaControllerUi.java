@@ -2,10 +2,12 @@ package com.java10x.cadastrodeninjas.Ninja.Controller;
 
 import com.java10x.cadastrodeninjas.Ninja.DTO.NinjaDTO;
 import com.java10x.cadastrodeninjas.Ninja.Service.NinjaService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -19,11 +21,61 @@ public class NinjaControllerUi {
         this.ninjaService = ninjaService;
     }
 
+    // Add ninja (CREATE)
+    @GetMapping("/add")
+    public String getFormAddNinja(Model model) {
+        model.addAttribute("ninja", new NinjaDTO());
+        return "addNinja";
+    }
+
+    @PostMapping("/save")
+    public String saveNinja(@ModelAttribute NinjaDTO ninja, RedirectAttributes redirectAttributes) {
+        ninjaService.addNinja(ninja);
+        redirectAttributes.addFlashAttribute("message", "Ninja added!");
+        return "redirect:/ninjas/ui/list";
+    }
+
     // Get ninjas (READ)
     @GetMapping("/list")
     public String getNinjas(Model model) {
         List<NinjaDTO> ninjas = ninjaService.getNinjas();
         model.addAttribute("ninjas", ninjas);
-        return "listNinjas";
+        return "ninjasList.html";
     }
+
+    // Get ninja by id  (READ)
+    @GetMapping("/list/{id}")
+    public String getNinjaById(@PathVariable Long id, Model model) {
+        NinjaDTO ninja = ninjaService.getNinjaById(id);
+        if (ninja != null) {
+            model.addAttribute("ninja", ninja);
+            return "ninjaDetails.html";
+        } else {
+            model.addAttribute("message", "Ninja not found");
+            return "ninjasList.html";
+        }
+    }
+
+    // Modify ninja data (UPDATE)
+    @PutMapping("/modify/{id}")
+    public ResponseEntity<?> modifyNinjaById(@PathVariable Long id, @RequestBody NinjaDTO ninjaUpdated) {
+
+        NinjaDTO ninjaModify = ninjaService.modifyNinjaById(id, ninjaUpdated);
+
+        if (ninjaModify != null) {
+            return ResponseEntity.ok(ninjaModify);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja not found!");
+        }
+
+    }
+
+    // Delete ninja (DELETE)
+    @GetMapping("/delete/{id}")
+    public String deleteNinjaById(@PathVariable Long id) {
+        ninjaService.deleteNinjaById(id);
+        return "redirect:/ninjas/ui/list";
+    }
+
 }

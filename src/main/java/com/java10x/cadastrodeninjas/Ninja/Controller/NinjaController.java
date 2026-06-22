@@ -48,7 +48,7 @@ public class NinjaController {
             return ResponseEntity.ok(ninjaById);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Ninja not founded!");
+                    .body("Ninja not found!");
         }
     }
 
@@ -62,7 +62,7 @@ public class NinjaController {
             return ResponseEntity.ok(ninjaModify);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Ninja not founded!");
+                    .body("Ninja not found!");
         }
 
     }
@@ -76,7 +76,7 @@ public class NinjaController {
             return ResponseEntity.ok("Ninja Deleted, ID: " + id);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Ninja not founded!");
+                    .body("Ninja not found!");
         }
     }
 
