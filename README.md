@@ -38,3 +38,23 @@ O esquema do banco de dados segue as seguintes relações:
     Construa o projeto: mvn clean install
     Execute a aplicação: mvn spring-boot:run
     Acesse a aplicação em http://localhost:8080/ninjas/list/
+
+## 📷Imagens
+
+<img width="1875" height="929" alt="image" src="https://github.com/user-attachments/assets/5a776707-33d7-4ffb-9bfb-8e6633e45621" />
+
+<img width="935" height="868" alt="image" src="https://github.com/user-attachments/assets/47140d1f-4da7-49f2-972b-b8622b80fb94" />
+
+<img width="693" height="929" alt="image" src="https://github.com/user-attachments/assets/90666c6a-203d-4e58-9883-e24aea1998a5" />
+
+<img width="866" height="698" alt="image" src="https://github.com/user-attachments/assets/092d0df9-2248-4770-b658-88f239027f63" />
+
+<img width="1104" height="862" alt="image" src="https://github.com/user-attachments/assets/ebdea963-c97e-4bee-ad2b-021bb5ee45c7" />
+
+<img width="1869" height="609" alt="image" src="https://github.com/user-attachments/assets/bce4a4b2-650b-447e-9457-ad7b06350cb6" />
+
+<img width="857" height="643" alt="image" src="https://github.com/user-attachments/assets/78916115-c06a-4ce8-9057-2ff4bdbc5936" />
+
+<img width="964" height="571" alt="image" src="https://github.com/user-attachments/assets/862ba434-eb07-43f6-afac-c01be37ac088" />
+
+<img width="757" height="510" alt="image" src="https://github.com/user-attachments/assets/f25e9d84-d597-42c8-b416-e604eb783e20" />
