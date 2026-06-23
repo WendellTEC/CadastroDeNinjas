@@ -20,7 +20,7 @@ Este sistema foi desenvolvido para gerenciar ninjas e suas missões. Cada ninja 
     GitHub: Hospedagem do repositório para controle de versão.
     Spring Data JPA: Para interação com o banco de dados.
     Maven: Para build e gerenciamento de dependências do projeto.
-# Docker: Para build externo do banco de dados
+    <!-- Docker: Para build externo do banco de dados -->
     SQL: Manipulação do banco de dados
 
 ## 🗄️Design do Banco de Dados
@@ -33,7 +33,7 @@ O esquema do banco de dados segue as seguintes relações:
 
 ## ⚙️Configuração
 
-    Clone o repositório: git clone https://github.com/horaciomuller/CadastroDeNinjas.git
+    Clone o repositório: git clone https://github.com/WendellTEC/CadastroDeNinjas.git
     Navegue até o diretório do projeto: cd CadastroDeNinjas
     Construa o projeto: mvn clean install
     Execute a aplicação: mvn spring-boot:run
