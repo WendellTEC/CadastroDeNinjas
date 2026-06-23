@@ -20,7 +20,7 @@ Este sistema foi desenvolvido para gerenciar ninjas e suas missões. Cada ninja 
     GitHub: Hospedagem do repositório para controle de versão.
     Spring Data JPA: Para interação com o banco de dados.
     Maven: Para build e gerenciamento de dependências do projeto.
-    <!-- Docker: Para build externo do banco de dados -->
+<!-- Docker: Para build externo do banco de dados -->
     SQL: Manipulação do banco de dados
 
 ## 🗄️Design do Banco de Dados
