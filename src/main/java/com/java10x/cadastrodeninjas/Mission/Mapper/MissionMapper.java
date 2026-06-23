@@ -2,7 +2,9 @@ package com.java10x.cadastrodeninjas.Mission.Mapper;
 
 import com.java10x.cadastrodeninjas.Mission.DTO.MissionDTO;
 import com.java10x.cadastrodeninjas.Mission.Model.MissionModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MissionMapper {
 
     public MissionModel map(MissionDTO missionDTO) {
