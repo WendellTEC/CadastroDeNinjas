@@ -1,5 +1,8 @@
 package com.java10x.cadastrodeninjas.Ninja.Service;
 
+import com.java10x.cadastrodeninjas.Mission.Mapper.MissionMapper;
+import com.java10x.cadastrodeninjas.Mission.Model.MissionModel;
+import com.java10x.cadastrodeninjas.Mission.Repository.MissionRepository;
 import com.java10x.cadastrodeninjas.Ninja.DTO.NinjaDTO;
 import com.java10x.cadastrodeninjas.Ninja.Mapper.NinjaMapper;
 import com.java10x.cadastrodeninjas.Ninja.Model.NinjaModel;
@@ -15,10 +18,12 @@ public class NinjaService {
 
     private final NinjaRepository ninjaRepository;
     private final NinjaMapper ninjaMapper;
+    private final MissionRepository missionRepository;
 
-    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper, MissionRepository missionRepository) {
         this.ninjaRepository = ninjaRepository;
         this.ninjaMapper = ninjaMapper;
+        this.missionRepository = missionRepository;
     }
 
     // Add ninja
@@ -58,6 +63,19 @@ public class NinjaService {
     // Delete ninja by id
     public void deleteNinjaById(Long id) {
         ninjaRepository.deleteById(id);
+    }
+
+    public void assignMission(Long ninjaId, Long missionId) {
+
+        NinjaModel ninja = ninjaRepository.findById(ninjaId)
+                .orElseThrow(() -> new RuntimeException("Ninja not found"));
+
+        MissionModel mission = missionRepository.findById(missionId)
+                .orElseThrow(() -> new RuntimeException("Mission not found"));
+
+        ninja.setMissions(mission);
+
+        ninjaRepository.save(ninja);
     }
 
 }
