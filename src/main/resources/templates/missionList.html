@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Missions List</title>
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:#f4f7fc;
+            padding:40px;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .add-btn{
+            display:inline-block;
+            margin-bottom:20px;
+            padding:12px 20px;
+            background:#22c55e;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+            font-weight:600;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,.1);
+        }
+
+        thead{
+            background:#2563eb;
+            color:white;
+        }
+
+        th,td{
+            padding:15px;
+            text-align:left;
+        }
+
+        tbody tr{
+            border-bottom:1px solid #eee;
+        }
+
+        .actions a{
+            text-decoration:none;
+            padding:8px 12px;
+            border-radius:8px;
+            color:white;
+            margin-right:5px;
+        }
+
+        .view{background:#2563eb;}
+        .edit{background:#f59e0b;}
+        .delete{background:#ef4444;}
+
+        .top-actions{
+            display:flex;
+            gap:12px;
+            margin-bottom:20px;
+        }
+
+        .nav-btn{
+            display:inline-block;
+            padding:12px 20px;
+            text-decoration:none;
+            color:white;
+            border-radius:10px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .nav-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        .ninja-btn{
+            background:#2563eb;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Missions List</h1>
+
+<div class="top-actions">
+
+    <a th:href="@{/missions/ui/add}" class="add-btn">
+        + Add Mission
+    </a>
+
+    <a th:href="@{/ninjas/ui/list}" class="nav-btn ninja-btn">
+        🥷 Ninjas
+    </a>
+
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Difficulty</th>
+        <th>Ninjas Assigned</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="mission : ${missions}">
+
+        <td th:text="${mission.name}"></td>
+
+        <td th:text="${mission.difficulty}"></td>
+
+        <td>
+<span th:if="${mission.ninja != null}"
+      th:text="${#lists.size(mission.ninja)} + ' ninja(s)'">
+</span>
+
+            <span th:if="${mission.ninja == null}">
+No ninjas assigned
+</span>
+        </td>
+
+        <td class="actions">
+
+            <a th:href="@{/missions/ui/list/{id}(id=${mission.id})}"
+               class="view">
+                View
+            </a>
+
+            <a th:href="@{/missions/ui/modify/{id}(id=${mission.id})}"
+               class="edit">
+                Modify
+            </a>
+
+            <a th:href="@{/missions/ui/delete/{id}(id=${mission.id})}"
+               class="delete">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mission Details</title>
+
+    <style>
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:#f4f7fc;
+            padding:40px;
+        }
+
+        .container{
+            max-width:800px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,.1);
+        }
+
+        h1,h2{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        th,td{
+            padding:12px;
+            border-bottom:1px solid #ddd;
+        }
+
+        .back{
+            display:block;
+            text-align:center;
+            margin-top:25px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Mission Details</h1>
+
+    <h2 th:text="${mission.name}"></h2>
+
+    <p>
+        <strong>Difficulty:</strong>
+        <span th:text="${mission.difficulty}"></span>
+    </p>
+
+    <h3>Assigned Ninjas</h3>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="ninja : ${mission.ninja}">
+            <td th:text="${ninja.name}"></td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <a th:href="@{/missions/ui/list}" class="back">
+        ← Back to Missions
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 package com.java10x.cadastrodeninjas.Ninja.Controller;
 
+import com.java10x.cadastrodeninjas.Mission.DTO.MissionDTO;
+import com.java10x.cadastrodeninjas.Mission.Service.MissionService;
 import com.java10x.cadastrodeninjas.Ninja.DTO.NinjaDTO;
 import com.java10x.cadastrodeninjas.Ninja.Service.NinjaService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +16,11 @@ import java.util.List;
 public class NinjaControllerUi {
 
     private final NinjaService ninjaService;
+    private final MissionService missionService;
 
-    public NinjaControllerUi(NinjaService ninjaService) {
+    public NinjaControllerUi(NinjaService ninjaService, MissionService missionService) {
         this.ninjaService = ninjaService;
+        this.missionService = missionService;
     }
 
     // Add ninja (CREATE)
@@ -76,6 +78,34 @@ public class NinjaControllerUi {
     @GetMapping("/delete/{id}")
     public String deleteNinjaById(@PathVariable Long id) {
         ninjaService.deleteNinjaById(id);
+        return "redirect:/ninjas/ui/list";
+    }
+
+    @GetMapping("/assign-mission/{id}")
+    public String assignMissionForm(@PathVariable Long id, Model model){
+
+        NinjaDTO ninja = ninjaService.getNinjaById(id);
+        List<MissionDTO> missions = missionService.getMissions();
+
+        model.addAttribute("ninja", ninja);
+        model.addAttribute("missions", missions);
+
+        return "assignMission";
+    }
+
+    @PostMapping("/assign-mission/{id}")
+    public String assignMission(
+            @PathVariable Long id,
+            @RequestParam Long missionId,
+            RedirectAttributes redirectAttributes) {
+
+        ninjaService.assignMission(id, missionId);
+
+        redirectAttributes.addFlashAttribute(
+                "message",
+                "Mission assigned successfully!"
+        );
+
         return "redirect:/ninjas/ui/list";
     }
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Mission</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:#f4f7fc;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            width:100%;
+            max-width:650px;
+            background:white;
+            padding:35px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:25px;
+            color:#1f2937;
+        }
+
+        .ninja-card{
+            background:#f8fafc;
+            padding:20px;
+            border-radius:12px;
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        .ninja-card img{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            object-fit:cover;
+            border:4px solid #2563eb;
+            margin-bottom:10px;
+        }
+
+        .ninja-card h2{
+            color:#374151;
+        }
+
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        label{
+            font-weight:600;
+            color:#374151;
+        }
+
+        select{
+            padding:12px;
+            border:2px solid #e5e7eb;
+            border-radius:10px;
+            font-size:1rem;
+            background:white;
+        }
+
+        select:focus{
+            outline:none;
+            border-color:#8b5cf6;
+        }
+
+        .assign-btn{
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#8b5cf6;
+            color:white;
+            font-size:1rem;
+            font-weight:600;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        .assign-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        .back-btn{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:600;
+        }
+
+        .back-btn:hover{
+            color:#1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Assign Mission</h1>
+
+    <div class="ninja-card">
+
+        <img th:src="${ninja.imgUrl}"
+             th:alt="${ninja.name}">
+
+        <h2 th:text="${ninja.name}">
+            Ninja Name
+        </h2>
+
+        <p>
+            Current Rank:
+            <strong th:text="${ninja.rank}"></strong>
+        </p>
+
+    </div>
+
+    <form th:action="@{/ninjas/ui/assign-mission/{id}(id=${ninja.id})}"
+          method="post">
+
+        <label>Select Mission</label>
+
+        <select name="missionId" required>
+
+            <option value="">
+                Choose a mission
+            </option>
+
+            <option th:each="mission : ${missions}"
+                    th:value="${mission.id}"
+                    th:text="${mission.name + ' - Difficulty: ' + mission.difficulty}">
+            </option>
+
+        </select>
+
+        <button type="submit" class="assign-btn">
+            Assign Mission
+        </button>
+
+    </form>
+
+    <a th:href="@{/ninjas/ui/list}" class="back-btn">
+        ← Back to Ninja List
+    </a>
+
+</div>
+
+</body>
+
+</html>

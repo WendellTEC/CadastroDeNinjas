@@ -121,11 +121,52 @@
                 white-space:nowrap;
             }
         }
+
+        .top-actions{
+            display:flex;
+            gap:12px;
+            margin-bottom:20px;
+        }
+
+        .nav-btn{
+            display:inline-block;
+            padding:12px 20px;
+            text-decoration:none;
+            color:white;
+            border-radius:10px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .nav-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        .mission-btn{
+            background:#8b5cf6;
+        }
+
+        .assign{
+            background:#8b5cf6;
+        }
+
     </style>
 </head>
 <body>
     <h1>Ninjas List</h1>
-    <a class="btn-add" th:href="@{/ninjas/ui/add}">Add New Ninjas</a>
+
+    <div class="top-actions">
+
+        <a th:href="@{/ninjas/ui/add}" class="btn-add">
+            + Add New Ninja
+        </a>
+
+        <a th:href="@{/missions/ui/list}" class="nav-btn mission-btn">
+            📜 Missions
+        </a>
+
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -154,14 +195,24 @@
                 </td>
 
                 <td class="actions">
-                    <a th:href="@{/ninjas/ui/list/{id}(id=${ninja.id})}" class="btn view">
-                        View details
+
+                    <a th:href="@{/ninjas/ui/list/{id}(id=${ninja.id})}"
+                       class="btn view">
+                        View Details
                     </a>
-                    <a th:href="@{/ninjas/ui/modify/{id}(id=${ninja.id})}" class="btn edit">
+
+                    <a th:href="@{/ninjas/ui/modify/{id}(id=${ninja.id})}"
+                       class="btn edit">
                         Modify
                     </a>
+
+                    <a th:href="@{/ninjas/ui/assign-mission/{id}(id=${ninja.id})}"
+                       class="btn assign">
+                        Assign Mission
+                    </a>
+
                     <a th:href="@{/ninjas/ui/delete/{id}(id=${ninja.id})}"
-                        class="btn delete">
+                       class="btn delete">
                         Delete
                     </a>
                 </td>
