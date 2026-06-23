@@ -2,8 +2,6 @@ package com.java10x.cadastrodeninjas.Ninja.Controller;
 
 import com.java10x.cadastrodeninjas.Ninja.DTO.NinjaDTO;
 import com.java10x.cadastrodeninjas.Ninja.Service.NinjaService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
