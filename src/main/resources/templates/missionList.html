@@ -63,15 +63,48 @@
         .view{background:#2563eb;}
         .edit{background:#f59e0b;}
         .delete{background:#ef4444;}
+
+        .top-actions{
+            display:flex;
+            gap:12px;
+            margin-bottom:20px;
+        }
+
+        .nav-btn{
+            display:inline-block;
+            padding:12px 20px;
+            text-decoration:none;
+            color:white;
+            border-radius:10px;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .nav-btn:hover{
+            transform:translateY(-2px);
+        }
+
+        .ninja-btn{
+            background:#2563eb;
+        }
+
     </style>
 </head>
 <body>
 
 <h1>Missions List</h1>
 
-<a th:href="@{/missions/ui/add}" class="add-btn">
-    + Add Mission
-</a>
+<div class="top-actions">
+
+    <a th:href="@{/missions/ui/add}" class="add-btn">
+        + Add Mission
+    </a>
+
+    <a th:href="@{/ninjas/ui/list}" class="nav-btn ninja-btn">
+        🥷 Ninjas
+    </a>
+
+</div>
 
 <table>
     <thead>
